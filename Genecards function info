@@ -1,0 +1,15 @@
+#Top 5 upregulated genes:
+#"DTHD1"   "EMILIN2" "PI16"    "C4orf45" "FAM180B"
+#DTHD1 (Death Domain-Containing Protein 1): Function in signaling pathways and formation of signaling complexes, as well as the apoptosis pathway.
+#EMILIN2 (Elastin Microfibril Interface-Located Protein 2): Enables extracellular matrix constituent conferring elasticity; involved in positive regulation of angiogenesis, of defense response to bacterium and of positive regulation of platelet aggregation.
+#PI16 (Peptidase Inhibitor 16 ): Negative regulation of peptidase activity; negative regulation of cell growth involved in cardiac muscle cell development.
+#C4orf45 (Sperm Microtubule Inner Protein 2):  Associated with hyperekplexia neurological disease with disturbed muscle functioning.
+#FAM180B (Family With Sequence Similarity 180 Member B): Predicted to be located in extracellular region. Associated with Borderline leprosy infectious disease and Mosaic Variegated Aneuploidy Syndrome which is a rare chromosomal anomaly, leading to various phenotypic abnormalities and an increased risk of cancer.
+
+#Top 5 downregulated genes:
+#"FAM46B"   "HS3ST3A1" "PMEL"     "TNFAIP6"  "COL4A2"
+#FAM46B (Family With Sequence Similarity 46 Member B): Enables poly(A) RNA polymerase activity. Involved in negative regulation of apoptotic process, of cell population proliferation and positive regulation of translation.
+#HS3ST3A1 (Heparan Sulfate-Glucosamine 3-Sulfotransferase 3A1): components in generating a myriad of distinct heparan sulfate fine structures that carry out multiple biologic activities; widely expressed, with the most abundant expression in liver and placenta.
+#PMEL (Premelanosome Protein): encodes a melanocyte-specific type I transmembrane glycoprotein and plays an essential role in the structural organization of premelanosomes; a secreted formn of this protein may be used as a melanoma-specific serum marker.
+#TNFAIP6 (TNF Alpha Induced Protein 6): involved in extracellular matrix stability and cell migration; associated with inflammation.
+#COL4A2 (Collagen Type IV Alpha 2 Chain): encodes one of the six subunits of type IV collagen, the major structural component of basement membranes; the C-terminal portion of the protein is an inhibitor of angiogenesis and tumor growth.
