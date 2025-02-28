@@ -1,0 +1,47 @@
+import pandas as pd
+
+data_source_sift = "https://raw.githubusercontent.com/HackBio-Internship/public_datasets/main/R/datasets/sift.tsv"
+data_source_foldx = "https://raw.githubusercontent.com/HackBio-Internship/public_datasets/main/R/datasets/foldX.tsv"
+
+df_sift = pd.read_csv(data_source_sift, sep = r'\s+')
+
+df_foldx = pd.read_csv(data_source_foldx, sep = r'\s+')
+
+df_sift['specific_Protein_aa'] = df_sift['Protein'] + '_' + df_sift['Amino_Acid']
+df_foldx['specific_Protein_aa'] = df_foldx['Protein'] + '_' + df_foldx['Amino_Acid']
+
+final_df = pd.merge(df_sift, df_foldx, on='specific_Protein_aa', how='outer')
+
+filtered_df = final_df[(final_df['sift_Score'] < 0.05) & (final_df['foldX_Score'] > 2)]
+same_values = (filtered_df['Amino_Acid_x'] == filtered_df['Amino_Acid_y']).all()
+print(f"Are Amino_Acid_x and Amino_Acid_y identical? {same_values}")
+filtered_df['Original_AA_x'] = filtered_df['Amino_Acid_x'].str[0]
+# Get value counts and convert to DataFrame
+amino_acid_freq_x = filtered_df['Original_AA_x'].value_counts().reset_index()
+
+# Rename the columns for clarity
+amino_acid_freq_x.columns = ['Amino_Acid', 'Frequency']
+
+import seaborn as sns
+sns.set_style("whitegrid")
+bar_plot = sns.catplot(
+  data=amino_acid_freq_x,
+  x="Amino_Acid",
+  y="Frequency",
+  kind="bar",
+  palette="magma",
+  height=6,
+  aspect=1.5
+)
+bar_plot.set_axis_labels("Amino Acid", "Total Frequency")
+bar_plot.fig.suptitle("Amino Acid Frequency Distribution (Bar Plot)")
+
+import matplotlib.pyplot as plt
+plt.figure(figsize=(8,8))
+plt.pie(amino_acid_freq_x['Frequency'], labels=amino_acid_freq_x['Amino_Acid'],
+    autopct='%1.1f%%', colors=sns.color_palette("magma", len(amino_acid_freq_x)),
+    startangle=90, wedgeprops={'edgecolor': 'black'})
+plt.title("Amino Acid Frequency Distribution (Pie Chart)", fontsize=14)
+plt.show()
+high_occurrence_aa = amino_acid_freq_x[amino_acid_freq_x['Frequency'] > 100]
+print(high_occurrence_aa)
