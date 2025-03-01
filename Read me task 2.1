@@ -1,0 +1,50 @@
+import pandas as pd  # Import the pandas library for data manipulation
+import scipy.stats as stats  # Import the scipy.stats library for statistical functions
+import seaborn as sns  # Import the seaborn library for data visualization
+
+# Load the data
+df = pd.read_csv('https://raw.githubusercontent.com/HackBio-Internship/2025_project_collection/main/Python/Dataset/seaborn_microbe.csv')
+# Reads the csv file from the given url and stores it into a pandas dataframe called df.
+
+"""
+  I try many times to load the dataset from github but still get the same error that the file doesn't exist, 
+   I do some research and turn out that it is not possible to load the dataset usimg directly the link path from github, so we have to change it a little bit
+       by replacing the address of git to raw.githubusercontent.
+   """
+# This is a comment explaining the need to use the raw.githubusercontent URL for direct file access.
+
+# Define a function to calculate the carrying capacity and time to reach it
+def calculate_carrying_capacity(df):
+ """
+   This function calculates the carrying capacity and the time to reach it for each strain in the dataframe.
+   The function from the next din't really work with this task since the columns are already established in the dataset so it is not necessary to create them.
+       """
+    # This is a docstring explaining the purpose of the function.
+  carrying_capacities = []  # Initialize an empty list to store carrying capacity data
+   for strain in df['Strain'].unique(): # Iterate over unique strains in the 'Strain' column
+     for condition in df['Condition'].unique(): # Iterate over unique conditions in the 'Condition' column
+       subset = df[(df['Strain'] == strain) & (df['Condition'] == condition)] # Create a subset of the dataframe for the current strain and condition
+       max_od600 = subset['OD600'].max() # Find the maximum OD600 value in the subset, which represents the carrying capacity
+       time_to_max_od600 = subset.loc[subset['OD600'].idxmax(), 'Time'] # Find the time at which the maximum OD600 occurred
+       carrying_capacities.append( # Append a dictionary containing the results to the carrying_capacities list
+          {
+             'Strain': strain,
+             'Condition': condition,
+             'Carrying Capacity': max_od600,
+             'Time to Carrying Capacity': time_to_max_od600,
+             }
+          )
+
+   return pd.DataFrame(carrying_capacities) # Return the results as a pandas DataFrame
+
+"""
+   Returns:
+       pandas.DataFrame: A dataframe with the carrying capacity and time to reach it for each strain.
+   """
+# Docstring explaining the return value of the function.
+
+# Calculate the carrying capacity and time to reach it for each strain
+carrying_capacity_df = calculate_carrying_capacity(df) # Call the function and store the result in carrying_capacity_df
+
+# Convert 'Time to Carrying Capacity' to numeric
+carrying_capacity_df['
