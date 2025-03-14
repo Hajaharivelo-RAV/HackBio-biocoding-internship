@@ -5,8 +5,8 @@ from scipy import stats
 # Load the dataset
 df = pd.read_csv('https://github.com/HackBio-Internship/public_datasets/raw/refs/heads/main/R/nhanes.csv')
 
-# Drop rows with missing values
-df = df.dropna()
+# Fill rows with missing values
+df = df.fillna(0)
 
 # Convert weight to pounds
 df['WeightPounds'] = df['Weight'] * 2.2
