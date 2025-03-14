@@ -1,0 +1,11 @@
+# Fourth function
+Username = ["Ebube", "Svetn", "Hajah"]
+
+for name1 in Username:
+    for name2 in Username:
+        if name1 != name2:
+            distance = 0
+            for i in range(len(name1)):  
+                if name1[i] != name2[i]:
+                    distance += 1
+            print(f"Hamming distance between {name1} and {name2}: {distance}")
