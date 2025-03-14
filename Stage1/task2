@@ -1,1 +1,36 @@
-a
+import random
+import math
+
+def logistic_growth(P0, K, r, time_steps, lag_phase_max, exp_phase_max):
+    # Simulates and returns a logistic population growth curve with randomized lag and exponential phases.
+
+    # Parameters:
+    # P0 (float): Initial population size
+    # K (float): Carrying capacity (max population)
+    # r (float): Growth rate
+    # time_steps (int): Number of time steps to simulate
+    # lag_phase_max (int): Maximum possible duration for the lag phase (randomized)
+    # exp_phase_max (int): Maximum possible duration for the exponential phase (randomized)
+
+    # Returns:
+    # list: Population values over time
+
+    # Randomly determine lag phase and exponential growth phase durations
+    lag_phase_duration = random.randint(1, lag_phase_max)
+    exp_phase_duration = random.randint(lag_phase_duration + 1, exp_phase_max)
+
+    # Time array and population storage
+    P = [0] * time_steps
+
+    for i in range(time_steps):
+        if i < lag_phase_duration:
+            # Lag Phase: Minimal growth
+            P[i] = P0 * (1 + 0.005 * i)
+        elif i < exp_phase_duration:
+            # Exponential Growth Phase
+            P[i] = K / (1 + ((K - P0) / P0) * math.exp(-r * (i - lag_phase_duration)))
+        else:
+            # Logistic Growth Phase (Saturation)
+            P[i] = K / (1 + ((K - P[exp_phase_duration-1]) / P[exp_phase_duration-1]) * math.exp(-r * (i - exp_phase_duration)))
+
+    return P
